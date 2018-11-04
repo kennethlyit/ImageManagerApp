@@ -5,8 +5,47 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ImageManagerUI"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None"
+        Title="MainWindow" MaxHeight="550" MaxWidth="800" MinWidth="650" MinHeight="250">
+ 
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+            
+            
+        </Grid.RowDefinitions>
+
+        <Label Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="25" Grid.ColumnSpan="3" Content="Please Enter UserName and Password" />
+
+        <Label Grid.Row="1" Grid.Column="0" Content="UserName" Margin="50,1" VerticalAlignment="Center"/>
+        <Label Grid.Row="2" Grid.Column="0" Content="Password" Margin="50,1" VerticalAlignment="Center"/>
+
+        <TextBox Name="txtUserName" Grid.Row="1" Grid.Column="1"  VerticalAlignment="Center"/>
+        <PasswordBox Name="txtPassword" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center"/>
+
+        <Button Name="btnRegister" Grid.Row="4" Grid.Column="0"  Width="100" Height="26" Content="Register" />
+
+        <StackPanel Grid.Row="3" Grid.Column="3" Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button Name="btnLoginCancel" Width="100" Height="26" Content="Cancel" HorizontalAlignment="Center" Margin="10"/>
+            <Button Name="btnLogin" Width="100" Height="26" Content="Login" HorizontalAlignment="Center" Margin="20"/>
+        </StackPanel>
+
+        <Image Grid.Row="1" Grid.Column="3" Grid.RowSpan="2"  Source="Images/contoso_logo.png" Stretch="None"/> 
+
+
+
+
+
     </Grid>
 </Window>
