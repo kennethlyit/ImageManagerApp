@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ImageManagerDBLibrary
+namespace DBLibrary
 {
     using System;
     using System.Data.Entity;
@@ -15,7 +15,7 @@ namespace ImageManagerDBLibrary
     
     public partial class ImageManagementDBEntities : DbContext
     {
-        public ImageManagementDBEntities(string connectionString)
+        public ImageManagementDBEntities(string connectionString )
             : base(connectionString)
         {
         }

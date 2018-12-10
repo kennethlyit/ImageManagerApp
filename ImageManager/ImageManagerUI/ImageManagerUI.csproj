@@ -147,5 +147,11 @@
   <ItemGroup>
     <Resource Include="Images\Contoso_logo.png" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DBLibrary\DBLibrary.csproj">
+      <Project>{34db4382-13a0-41aa-98ed-e53ceca6e093}</Project>
+      <Name>DBLibrary</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

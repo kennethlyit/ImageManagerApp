@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{CC005A57-ECA2-44DB-A826-F5D83B1D91FF}</ProjectGuid>
+    <ProjectGuid>{34DB4382-13A0-41AA-98ED-E53CECA6E093}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>DBLibrary</RootNamespace>
@@ -51,63 +51,63 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AccessLevel.cs">
-      <DependentUpon>ImageManagementModel.tt</DependentUpon>
+      <DependentUpon>ImageAppModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Image.cs">
-      <DependentUpon>ImageManagementModel.tt</DependentUpon>
+      <DependentUpon>ImageAppModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="ImageManagementModel.Context.cs">
+    <Compile Include="ImageAppModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ImageManagementModel.Context.tt</DependentUpon>
+      <DependentUpon>ImageAppModel.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="ImageManagementModel.cs">
+    <Compile Include="ImageAppModel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ImageManagementModel.tt</DependentUpon>
+      <DependentUpon>ImageAppModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="ImageManagementModel.Designer.cs">
+    <Compile Include="ImageAppModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ImageManagementModel.edmx</DependentUpon>
+      <DependentUpon>ImageAppModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Log.cs">
-      <DependentUpon>ImageManagementModel.tt</DependentUpon>
+      <DependentUpon>ImageAppModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Use.cs">
-      <DependentUpon>ImageManagementModel.tt</DependentUpon>
+      <DependentUpon>ImageAppModel.tt</DependentUpon>
     </Compile>
     <Compile Include="User.cs">
-      <DependentUpon>ImageManagementModel.tt</DependentUpon>
+      <DependentUpon>ImageAppModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Vendor.cs">
-      <DependentUpon>ImageManagementModel.tt</DependentUpon>
+      <DependentUpon>ImageAppModel.tt</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EntityDeploy Include="ImageManagementModel.edmx">
+    <EntityDeploy Include="ImageAppModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>ImageManagementModel.Designer.cs</LastGenOutput>
+      <LastGenOutput>ImageAppModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
-    <None Include="ImageManagementModel.edmx.diagram">
-      <DependentUpon>ImageManagementModel.edmx</DependentUpon>
+    <None Include="App.Config" />
+    <None Include="ImageAppModel.edmx.diagram">
+      <DependentUpon>ImageAppModel.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="ImageManagementModel.Context.tt">
+    <Content Include="ImageAppModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>ImageManagementModel.Context.cs</LastGenOutput>
-      <DependentUpon>ImageManagementModel.edmx</DependentUpon>
+      <LastGenOutput>ImageAppModel.Context.cs</LastGenOutput>
+      <DependentUpon>ImageAppModel.edmx</DependentUpon>
     </Content>
-    <Content Include="ImageManagementModel.tt">
+    <Content Include="ImageAppModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ImageManagementModel.edmx</DependentUpon>
-      <LastGenOutput>ImageManagementModel.cs</LastGenOutput>
+      <DependentUpon>ImageAppModel.edmx</DependentUpon>
+      <LastGenOutput>ImageAppModel.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <ItemGroup>
