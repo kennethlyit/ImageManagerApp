@@ -23,5 +23,28 @@ namespace ImageManagerUI
         {
             InitializeComponent();
         }
+
+        private void btnAdminAdmin_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnAdminUsers_Click(object sender, RoutedEventArgs e)
+        {
+            Users usersPage = new Users();
+            frmMain.Navigate(usersPage);
+        }
+
+        private void btnAdminLogs_Click(object sender, RoutedEventArgs e)
+        {
+            Logs logsPage = new Logs();
+            frmMain.Navigate(logsPage);
+        }
+
+        private void btnAdminReports_Click(object sender, RoutedEventArgs e)
+        {
+            Reports reportsPage = new Reports();
+            frmMain.Navigate(reportsPage);
+        }
     }
 }
