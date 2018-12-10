@@ -20,6 +20,9 @@ namespace ImageManagerUI
     /// </summary>
     public partial class MainWindow : Window
     {
+        Imah
+        ImageManagerDBLibrary.ImageManagementDBEntities db = new ImageManagerDBLibrary.ImageManagementDBEntities("metadata=res://*/ImageManagerModel.csdl|res://*/ImageManagerModel.ssdl|res://*/ImageManagerModel.msl;provider=System.Data.SqlClient;provider connection string='data source=192.168.81.100;initial catalog=ImageManagementDB;persist security info=True;user id=ImageManagement;password=Letmein101;pooling=False;MultipleActiveResultSets=True;App=EntityFramework'");
+
         public MainWindow()
         {
             InitializeComponent();
