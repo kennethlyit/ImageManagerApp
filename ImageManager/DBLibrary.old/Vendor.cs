@@ -12,15 +12,18 @@ namespace DBLibrary
     using System;
     using System.Collections.Generic;
     
-    public partial class Image
+    public partial class Vendor
     {
-        public int ImageID { get; set; }
-        public int VendorID { get; set; }
-        public int UseCaseID { get; set; }
-        public string Notes { get; set; }
-        public System.DateTime date { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Vendor()
+        {
+            this.Images = new HashSet<Image>();
+        }
     
-        public virtual UseCase UseCase { get; set; }
-        public virtual Vendor Vendor { get; set; }
+        public int VendorID { get; set; }
+        public string VendorName { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Image> Images { get; set; }
     }
 }

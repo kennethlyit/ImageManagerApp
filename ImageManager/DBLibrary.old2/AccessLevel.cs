@@ -12,22 +12,18 @@ namespace DBLibrary
     using System;
     using System.Collections.Generic;
     
-    public partial class User
+    public partial class AccessLevel
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public User()
+        public AccessLevel()
         {
-            this.Logs = new HashSet<Log>();
+            this.Users = new HashSet<Users>();
         }
     
-        public int UserID { get; set; }
-        public string Username { get; set; }
-        public string Password { get; set; }
-        public string Email { get; set; }
         public int LevelID { get; set; }
+        public string JobRole { get; set; }
     
-        public virtual AccessLevel AccessLevel { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Log> Logs { get; set; }
+        public virtual ICollection<Users> Users { get; set; }
     }
 }

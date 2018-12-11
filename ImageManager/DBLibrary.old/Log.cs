@@ -12,15 +12,13 @@ namespace DBLibrary
     using System;
     using System.Collections.Generic;
     
-    public partial class Image
+    public partial class Log
     {
-        public int ImageID { get; set; }
-        public int VendorID { get; set; }
-        public int UseCaseID { get; set; }
-        public string Notes { get; set; }
-        public System.DateTime date { get; set; }
+        public int LogID { get; set; }
+        public int UserID { get; set; }
+        public string Event { get; set; }
+        public System.DateTime Date { get; set; }
     
-        public virtual UseCase UseCase { get; set; }
-        public virtual Vendor Vendor { get; set; }
+        public virtual User User { get; set; }
     }
 }

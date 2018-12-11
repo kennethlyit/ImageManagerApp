@@ -16,11 +16,12 @@ namespace DBLibrary
     {
         public int ImageID { get; set; }
         public int VendorID { get; set; }
-        public int UseCaseID { get; set; }
+        public int UseID { get; set; }
         public string Notes { get; set; }
-        public System.DateTime date { get; set; }
+        public System.DateTime Date { get; set; }
+        public string ImageName { get; set; }
     
-        public virtual UseCase UseCase { get; set; }
+        public virtual Use Use { get; set; }
         public virtual Vendor Vendor { get; set; }
     }
 }

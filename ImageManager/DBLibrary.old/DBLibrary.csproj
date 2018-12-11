@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{55909C04-EB00-4880-8989-FD63C0F5F4E5}</ProjectGuid>
+    <ProjectGuid>{CC005A57-ECA2-44DB-A826-F5D83B1D91FF}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>DBLibrary</RootNamespace>
@@ -51,63 +51,63 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AccessLevel.cs">
-      <DependentUpon>ImageManagerModel.tt</DependentUpon>
+      <DependentUpon>ImageManagementModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Image.cs">
-      <DependentUpon>ImageManagerModel.tt</DependentUpon>
+      <DependentUpon>ImageManagementModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="ImageManagerModel.Context.cs">
+    <Compile Include="ImageManagementModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ImageManagerModel.Context.tt</DependentUpon>
+      <DependentUpon>ImageManagementModel.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="ImageManagerModel.cs">
+    <Compile Include="ImageManagementModel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ImageManagerModel.tt</DependentUpon>
+      <DependentUpon>ImageManagementModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="ImageManagerModel.Designer.cs">
+    <Compile Include="ImageManagementModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ImageManagerModel.edmx</DependentUpon>
+      <DependentUpon>ImageManagementModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Log.cs">
-      <DependentUpon>ImageManagerModel.tt</DependentUpon>
+      <DependentUpon>ImageManagementModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UseCase.cs">
-      <DependentUpon>ImageManagerModel.tt</DependentUpon>
+    <Compile Include="Use.cs">
+      <DependentUpon>ImageManagementModel.tt</DependentUpon>
     </Compile>
     <Compile Include="User.cs">
-      <DependentUpon>ImageManagerModel.tt</DependentUpon>
+      <DependentUpon>ImageManagementModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Vendor.cs">
-      <DependentUpon>ImageManagerModel.tt</DependentUpon>
+      <DependentUpon>ImageManagementModel.tt</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EntityDeploy Include="ImageManagerModel.edmx">
+    <EntityDeploy Include="ImageManagementModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>ImageManagerModel.Designer.cs</LastGenOutput>
+      <LastGenOutput>ImageManagementModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.Config" />
-    <None Include="ImageManagerModel.edmx.diagram">
-      <DependentUpon>ImageManagerModel.edmx</DependentUpon>
+    <None Include="App.config" />
+    <None Include="ImageManagementModel.edmx.diagram">
+      <DependentUpon>ImageManagementModel.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="ImageManagerModel.Context.tt">
+    <Content Include="ImageManagementModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>ImageManagerModel.Context.cs</LastGenOutput>
-      <DependentUpon>ImageManagerModel.edmx</DependentUpon>
+      <LastGenOutput>ImageManagementModel.Context.cs</LastGenOutput>
+      <DependentUpon>ImageManagementModel.edmx</DependentUpon>
     </Content>
-    <Content Include="ImageManagerModel.tt">
+    <Content Include="ImageManagementModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ImageManagerModel.edmx</DependentUpon>
-      <LastGenOutput>ImageManagerModel.cs</LastGenOutput>
+      <DependentUpon>ImageManagementModel.edmx</DependentUpon>
+      <LastGenOutput>ImageManagementModel.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <ItemGroup>
