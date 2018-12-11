@@ -10,9 +10,10 @@
 namespace DBLibrary
 {
     using System;
+    using System.Collections.Generic;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
-    
+
     public partial class ImageManagementDBEntities : DbContext
     {
         public ImageManagementDBEntities(string connectionString )
@@ -31,5 +32,6 @@ namespace DBLibrary
         public virtual DbSet<Use> Uses { get; set; }
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<Vendor> Vendors { get; set; }
+        public IEnumerable<object> User { get; set; }
     }
 }

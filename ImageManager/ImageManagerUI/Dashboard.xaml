@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ImageManagerUI"
         mc:Ignorable="d"
+        Loaded="Window_Loaded" 
         Title="Dashboard" Height="450" Width="800" MinWidth="1000" MinHeight="600">
     <Grid>
         <Grid.ColumnDefinitions>
@@ -25,10 +26,10 @@
         </StackPanel>
 
         <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" >
-            <Button Name ="btnAdminLogs" Content="Logs" Width="60" Height="26"  Margin="10,1" Click="btnAdminLogs_Click"/>
-            <Button Name="btnAdminAdmin" Content="Admin" Height="26" Width="60" Margin="10,1" Click="btnAdminAdmin_Click" />
-            <Button Name="btnAdminReports" Content="Reports" Width="60" Height="26" Margin="10,1" Click="btnAdminReports_Click"/>
-            <Button Name="btnAdminUsers" Content="Users" Width="60" Height="26" Margin="10,1" Click="btnAdminUsers_Click" />
+            <Button Name ="btnAdminLogs" Content="Logs" Width="60" Height="26"  Margin="10,1" Click="btnAdminLogs_Click" Visibility="Collapsed"/>
+            <Button Name="btnAdminAdmin" Content="Admin" Height="26" Width="60" Margin="10,1" Click="btnAdminAdmin_Click" Visibility="Collapsed" />
+            <Button Name="btnAdminReports" Content="Reports" Width="60" Height="26" Margin="10,1" Click="btnAdminReports_Click" Visibility="Collapsed"/>
+            <Button Name="btnAdminUsers" Content="Users" Width="60" Height="26" Margin="10,1" Click="btnAdminUsers_Click" Visibility="Visible"/>
         </StackPanel>
 
         <DockPanel Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2">
@@ -43,11 +44,11 @@
             
         </DockPanel>
 
-        <Button Name="btnNewImage" HorizontalAlignment="Left" Margin="20,0" Grid.Column="0" Grid.Row="3" Height="26" Content="New Image"/>
+        <Button Name="btnNewImage" HorizontalAlignment="Left" Margin="20,0" Grid.Column="0" Grid.Row="3" Height="26" Content="New Image" Visibility="Collapsed"/>
 
         <StackPanel Grid.Row="3" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
-            <Button Name ="btnLogout" Content="Logout" Width="60" Height="26"  Margin="10,1"/>
-            <Button Name="btnExit" Content="Exit" Height="26" Width="60" Margin="10,1" />
+            <Button Name ="btnLogout" Content="Logout" Width="60" Height="26"  Margin="10,1" Click="btnLogout_Click"/>
+            <Button Name="btnExit" Content="Exit" Height="26" Width="60" Margin="10,1" Click="btnExit_Click" />
         </StackPanel>
 
 
