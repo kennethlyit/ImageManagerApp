@@ -15,8 +15,8 @@ namespace DBLibrary
     
     public partial class ImageManageEntities : DbContext
     {
-        public ImageManageEntities()
-            : base("name=ImageManageEntities")
+        public ImageManageEntities(string connectionstring)
+            : base(connectionstring)
         {
         }
     

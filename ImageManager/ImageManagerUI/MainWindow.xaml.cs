@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using DBLibrary;
 
 namespace ImageManagerUI
 {
@@ -20,12 +21,26 @@ namespace ImageManagerUI
     /// </summary>
     public partial class MainWindow : Window
     {
-        Imah
-        ImageManagerDBLibrary.ImageManagementDBEntities db = new ImageManagerDBLibrary.ImageManagementDBEntities("metadata=res://*/ImageManagerModel.csdl|res://*/ImageManagerModel.ssdl|res://*/ImageManagerModel.msl;provider=System.Data.SqlClient;provider connection string='data source=192.168.81.100;initial catalog=ImageManagementDB;persist security info=True;user id=ImageManagement;password=Letmein101;pooling=False;MultipleActiveResultSets=True;App=EntityFramework'");
+        ImageManageEntities db = new ImageManageEntities("metadata=res://*/ImageManagerModel.csdl|res://*/ImageManagerModel.ssdl|res://*/ImageManagerModel.msl;provider=System.Data.SqlClient;provider connection string='data source=192.168.81.100;initial catalog=ImageManage;persist security info=True;user id=ImageManagement;password=Letmein101;MultipleActiveResultSets=True;App=EntityFramework'");
 
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void btnLogin_Click(object sender, RoutedEventArgs e)
+        {
+            string currentUser = txtUserName.Text;
+            string currentPassword = txtPassword.Password;
+            foreach (var user in db.Users.Where( t => t.Username == currentUser && t.Password == currentPassword))
+            {
+
+            }
+        }
+
+        private void btnLoginCancel_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
