@@ -30,6 +30,8 @@ namespace ImageManagerUI
 
         private void btnLogin_Click(object sender, RoutedEventArgs e)
         {
+            User validatedUser = new User();
+            bool login = false;
             string currentUser = txtUserName.Text;
             string currentPassword = txtPassword.Password;
             //need to find out wtf is going on here, it won't let me in with correct credentials
@@ -37,12 +39,8 @@ namespace ImageManagerUI
             {
                 if (user.Username == currentUser && user.Password == currentPassword)
                 {
-                    Dashboard dashboard = new Dashboard();
-                    dashboard.user = user;
-                    dashboard.Owner = this;
-                    this.Hide();
-                    dashboard.ShowDialog();
-                    break;
+                    login = true;
+                    validatedUser = user;
                 }
                 else
                 {
@@ -52,6 +50,19 @@ namespace ImageManagerUI
                     //this.Hide();
                 }
                 
+            }
+            if (login)
+            {
+                CreateLogEntry(validatedUser.UserID, "User Logged In", validatedUser.Username);
+                Dashboard dashboard = new Dashboard();
+                dashboard.user = validatedUser;
+                dashboard.Owner = this;
+                this.Hide();
+                dashboard.ShowDialog();
+                            }
+            else
+            {
+                CreateLogEntry(1, "Failed Login", validatedUser.Username);
             }
         }
 
@@ -66,6 +77,24 @@ namespace ImageManagerUI
             Registration registration = new Registration();
             registration.ShowDialog();
             this.Hide();
+        }
+
+
+
+        private void CreateLogEntry(int userID, string description, string userName)
+        {
+            string comment = $"{description} user = {userName}";
+            Log log = new Log();
+            log.UserID = userID;
+            log.Description = comment;
+            log.Date = DateTime.Now;
+            SaveLog(log);
+        }
+
+        private void SaveLog(Log log)
+        {
+            db.Entry(log).State = System.Data.Entity.EntityState.Added;
+            db.SaveChanges();
         }
     }
 }

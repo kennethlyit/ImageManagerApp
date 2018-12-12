@@ -16,8 +16,8 @@ namespace DBLibrary
     {
         public int LogID { get; set; }
         public int UserID { get; set; }
-        public string Event { get; set; }
         public System.DateTime Date { get; set; }
+        public string Description { get; set; }
     
         public virtual User User { get; set; }
     }
