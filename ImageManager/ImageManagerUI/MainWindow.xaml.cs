@@ -35,13 +35,13 @@ namespace ImageManagerUI
             //need to find out wtf is going on here, it won't let me in with correct credentials
             foreach (var user in db.Users)
             {
-                if (user.Username == currentUser /*&& user.Password == currentPassword*/)
+                if (user.Username == currentUser && user.Password == currentPassword)
                 {
-                    MessageBox.Show("that worked");
                     Dashboard dashboard = new Dashboard();
                     dashboard.user = user;
-                    dashboard.ShowDialog();
+                    dashboard.Owner = this;
                     this.Hide();
+                    dashboard.ShowDialog();
                     break;
                 }
                 else
@@ -58,6 +58,7 @@ namespace ImageManagerUI
         private void btnLoginCancel_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+            Environment.Exit(0);
         }
 
         private void btnRegister_Click(object sender, RoutedEventArgs e)

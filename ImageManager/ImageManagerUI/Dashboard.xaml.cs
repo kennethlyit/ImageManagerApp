@@ -52,6 +52,7 @@ namespace ImageManagerUI
         private void btnExit_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+            Environment.Exit(0);
         }
 
         private void btnLogout_Click(object sender, RoutedEventArgs e)

@@ -1,4 +1,5 @@
 ﻿using System;
+using DBLibrary;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,29 @@ namespace ImageManagerUI
     /// </summary>
     public partial class Users : Page
     {
+        ImageManageEntities db = new ImageManageEntities("metadata=res://*/ImageManagerModel.csdl|res://*/ImageManagerModel.ssdl|res://*/ImageManagerModel.msl;provider=System.Data.SqlClient;provider connection string='data source=192.168.81.100;initial catalog=ImageManage;persist security info=True;user id=ImageManagement;password=Letmein101;MultipleActiveResultSets=True;App=EntityFramework'");
+
+        List<User> users = new List<User>();
+
+
         public Users()
         {
             InitializeComponent();
+        }
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            lstUsers.ItemsSource = users;
+            foreach (var user in db.Users)
+            {
+                users.Add(user);
+            }
+
+        }
+
+        private void MnuNewUser_Click(object sender, RoutedEventArgs e)
+        {
+            stkNewUser.Visibility = Visibility.Visible;
         }
     }
 }
