@@ -32,15 +32,39 @@ namespace ImageManagerUI
         {
             string currentUser = txtUserName.Text;
             string currentPassword = txtPassword.Password;
-            foreach (var user in db.Users.Where( t => t.Username == currentUser && t.Password == currentPassword))
+            //need to find out wtf is going on here, it won't let me in with correct credentials
+            foreach (var user in db.Users)
             {
-
+                if (user.Username == currentUser /*&& user.Password == currentPassword*/)
+                {
+                    MessageBox.Show("that worked");
+                    Dashboard dashboard = new Dashboard();
+                    dashboard.user = user;
+                    dashboard.ShowDialog();
+                    this.Hide();
+                    break;
+                }
+                else
+                {
+                    lblloginError.Content = "Please Check your username or Password";
+                    //Dashboard dashboard = new Dashboard();
+                    //dashboard.ShowDialog();
+                    //this.Hide();
+                }
+                
             }
         }
 
         private void btnLoginCancel_Click(object sender, RoutedEventArgs e)
         {
+            this.Close();
+        }
 
+        private void btnRegister_Click(object sender, RoutedEventArgs e)
+        {
+            Registration registration = new Registration();
+            registration.ShowDialog();
+            this.Hide();
         }
     }
 }

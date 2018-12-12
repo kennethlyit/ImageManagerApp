@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DBLibrary;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,6 +20,7 @@ namespace ImageManagerUI
     /// </summary>
     public partial class Dashboard : Window
     {
+        public User user = new User();
         public Dashboard()
         {
             InitializeComponent();
@@ -45,6 +47,41 @@ namespace ImageManagerUI
         {
             Reports reportsPage = new Reports();
             frmMain.Navigate(reportsPage);
+        }
+
+        private void btnExit_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void btnLogout_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnNewImage_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        //Check User access level and make buttons visible, runs in XAML in dashboard app in Window Loaded
+        private void CheckUserAccess(User user)
+        {
+            if (user.LevelID == 1) //graphic designer
+            {
+                btnNewImage.Visibility = Visibility.Visible;
+            }
+            if (user.LevelID == 2)  //admin user 
+            {
+                btnAdminAdmin.Visibility = Visibility.Visible;
+                btnAdminLogs.Visibility = Visibility.Visible;
+                btnAdminUsers.Visibility = Visibility.Visible;
+            }
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            CheckUserAccess(user);
         }
     }
 }
