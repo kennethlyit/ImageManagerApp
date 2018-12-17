@@ -57,7 +57,11 @@ namespace ImageManagerUI
 
         private void btnLogout_Click(object sender, RoutedEventArgs e)
         {
+            MainWindow mainWindow = new MainWindow();
+            mainWindow.Show();
+            this.Hide();
 
+            
         }
 
         private void btnNewImage_Click(object sender, RoutedEventArgs e)

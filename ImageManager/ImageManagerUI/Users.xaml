@@ -16,8 +16,8 @@
 
         </Grid.RowDefinitions>
 
-        <StackPanel Name="stkUsersList" Visibility="Visible">
-            <ListView Name="lstUsers" Grid.Row="0">
+        <StackPanel>
+            <ListView Name="lstUsers" Grid.Row="0" SelectionChanged="lstUsers_SelectionChanged" Visibility="Visible">
                 <ListView.ContextMenu>
                     <ContextMenu Name="mnuUserListOverview" IsEnabled="True">
                         <MenuItem Header="New User" Name="muNewUser" Click="muNewUser_Click" IsEnabled="True"/>
@@ -54,7 +54,7 @@
                         <GridViewColumn Header="Role" Width="150">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBlock Name="txtJobrole" HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="{Binding jobroleDescript}" />
+                                    <TextBlock Name="txtJobrole" HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="{Binding LevelID}" />
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
@@ -62,7 +62,7 @@
                     </GridView>
                 </ListView.View>
             </ListView>
-            <StackPanel Grid.Row="1" Name="stkNewUser" Visibility="Visible" Background="Azure">
+            <StackPanel Grid.Row="1" Name="stkNewUser" Visibility="Collapsed" Background="Azure">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="30*"/>

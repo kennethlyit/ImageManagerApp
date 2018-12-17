@@ -62,7 +62,8 @@ namespace ImageManagerUI
                             }
             else
             {
-                CreateLogEntry(1, "Failed Login", "NoUser");
+                //TODO:Why does this fail, is it the int not getting passed as a INT?
+                CreateLogEntry(2, "Failed Login", "Admin");
             }
         }
 
