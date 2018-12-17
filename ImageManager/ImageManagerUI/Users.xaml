@@ -16,13 +16,13 @@
 
         </Grid.RowDefinitions>
 
-        <StackPanel>
+        <StackPanel Name="stkUsersList" Visibility="Visible">
             <ListView Name="lstUsers" Grid.Row="0">
                 <ListView.ContextMenu>
-                    <ContextMenu>
-                        <MenuItem Header="New User" Name="MnuNewUser" Click="MnuNewUser_Click">
-                            
-                        </MenuItem>
+                    <ContextMenu Name="mnuUserListOverview" IsEnabled="True">
+                        <MenuItem Header="New User" Name="muNewUser" Click="muNewUser_Click" IsEnabled="True"/>
+                        <MenuItem Header="Modify Selected User" Name="mnuModifyUser" Click="mnuModifyUser_Click" IsEnabled="False"/>
+                        <MenuItem Header="Delete Selected User" Name="mnudDeleteUser" Click="mnudDeleteUser_Click" IsEnabled="False"/>
                     </ContextMenu>
                 </ListView.ContextMenu>
                 <ListView.View>
@@ -62,7 +62,7 @@
                     </GridView>
                 </ListView.View>
             </ListView>
-            <StackPanel Grid.Row="1" Name="stkNewUser" Visibility="Collapsed" Background="Azure">
+            <StackPanel Grid.Row="1" Name="stkNewUser" Visibility="Visible" Background="Azure">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="30*"/>
@@ -74,6 +74,8 @@
                         <RowDefinition Height="16*" />
                         <RowDefinition Height="16*" />
                         <RowDefinition Height="16*" />
+                        <RowDefinition Height="16*" />
+                        
                     </Grid.RowDefinitions>
 
                     <Label Grid.Row="0" Grid.Column="0" Content="UserName" />
@@ -81,14 +83,22 @@
                     <Label Grid.Row="2" Grid.Column="0" Content="Email" />
                     <Label Grid.Row="3" Grid.Column="0" Content="Role" />
 
+                    <StackPanel Grid.Row="4" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center">
+                        <Button Name="btncancelUser"  Width="100" Content="Cancel" Click="btncancelUser_Click" Margin="10,1"/>
+                        <Button Name="btnaddUser"  Width="100" Content="Add User" Click="btnaddUser_Click" Margin="10,1"/>
 
-                    <TextBox  Grid.Row="0" Grid.Column="1"  />
-                    <TextBox  Grid.Row="1" Grid.Column="1"  />
-                    <TextBox  Grid.Row="2" Grid.Column="1"  />
-                    <ComboBox  Grid.Row="3" Grid.Column="1"  >
+                    </StackPanel>
+                    
+
+
+                    <TextBox  Grid.Row="0" Grid.Column="1" Name="txtUserName"  />
+                    <TextBox  Grid.Row="1" Grid.Column="1"  Name="txtPassword"/>
+                    <TextBox  Grid.Row="2" Grid.Column="1"  Name="txtEmail"/>
+                    <ComboBox  Grid.Row="3" Grid.Column="1" Name="cboAccessLevel"  >
+                        <ComboBoxItem Content="Please Select" />
                         <ComboBoxItem Content="Graphic Designer" />
-                        <ComboBoxItem Content="User" />
-                        <ComboBoxItem Content="Adminstrator" />
+                        <ComboBoxItem Content="Administrator" />
+                        <ComboBoxItem Content="Operator" />
                     </ComboBox>
 
                 </Grid>

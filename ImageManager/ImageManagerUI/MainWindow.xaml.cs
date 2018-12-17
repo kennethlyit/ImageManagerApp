@@ -62,7 +62,7 @@ namespace ImageManagerUI
                             }
             else
             {
-                CreateLogEntry(1, "Failed Login", validatedUser.Username);
+                CreateLogEntry(1, "Failed Login", "NoUser");
             }
         }
 

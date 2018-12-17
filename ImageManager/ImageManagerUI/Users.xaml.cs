@@ -35,30 +35,78 @@ namespace ImageManagerUI
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             lstUsers.ItemsSource = users;
-            string jobRoleDescript;
-            foreach (var user in db.Users)
+            /*string jobRoleDescript;*/
+            foreach (var user in db.Users) 
             {
                 users.Add(user);
-                if (Convert.ToInt32(user.AccessLevel) == 1)
-                {
-                    jobRoleDescript = "Graphic Designer";
-                }
-                if (Convert.ToInt32(user.AccessLevel) == 2)
-                {
-                    jobRoleDescript = "Administrator";
-                }
-                if (Convert.ToInt32(user.AccessLevel) == 3)
-                {
-                    jobRoleDescript = "Operator";
-                }
+                //todo: trying to populate access role in list
+                //if (Convert.ToInt32(user.AccessLevel) == 1)
+                //{
+                //    jobRoleDescript = "Graphic Designer";
+                //}
+                //if (Convert.ToInt32(user.AccessLevel) == 2)
+                //{
+                //    jobRoleDescript = "Administrator";
+                //}
+                //if (Convert.ToInt32(user.AccessLevel) == 3)
+                //{
+                //    jobRoleDescript = "Operator";
+                //}
             }  
             
 
         }
 
-        private void MnuNewUser_Click(object sender, RoutedEventArgs e)
+
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
+
+        }
+
+        private void btnaddUser_Click(object sender, RoutedEventArgs e)
+        {
+            //Create and populate user info into User class
+            User user = new User();
+            user.Username = txtUserName.Text.Trim();
+            user.Password = txtPassword.Text.Trim();
+            user.Email = txtEmail.Text.Trim();
+            //Index Level matches Access Level values
+            user.LevelID = cboAccessLevel.SelectedIndex;
+            //Save the user
+            SaveUser(user);
+            stkNewUser.Visibility = Visibility.Collapsed;
+            stkUsersList.Visibility = Visibility.Visible;
+
+        }
+
+        private void btncancelUser_Click(object sender, RoutedEventArgs e)
+        {
+            stkNewUser.Visibility = Visibility.Collapsed;
+            stkUsersList.Visibility = Visibility.Visible;
+        }
+
+
+        private void mnuModifyUser_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void mnudDeleteUser_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void muNewUser_Click(object sender, RoutedEventArgs e)
+        {
+            //Make User table Visible and collaspe the add edit stuff
             stkNewUser.Visibility = Visibility.Visible;
+            stkUsersList.Visibility = Visibility.Collapsed;
+        }
+
+        public void SaveUser(User user)
+        {
+            db.Entry(user).State = System.Data.Entity.EntityState.Added;
+            db.SaveChanges();
         }
     }
 }
