@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity.Core;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -30,40 +31,35 @@ namespace ImageManagerUI
 
         private void btnLogin_Click(object sender, RoutedEventArgs e)
         {
+            //Create the user 
             User validatedUser = new User();
-            bool login = false;
+            //Intialses the checks
+            bool credentialsValidated = false;
+            //Create two strings for the username and password for use later
             string currentUser = txtUserName.Text;
             string currentPassword = txtPassword.Password;
-            //need to find out wtf is going on here, it won't let me in with correct credentials
-            foreach (var user in db.Users)
+            //Puts both strings into bool credentials validated, false is a problem.
+            credentialsValidated = ValidateUserInput(currentUser, currentPassword);
+            //checks the bool value and returns error in the bool is false, caused by no meeting requirements
+            if (credentialsValidated)
             {
-                if (user.Username == currentUser && user.Password == currentPassword)
+                //checks validated user against the user db and returns that user if it matches
+                validatedUser = GetUserRecord(currentUser, currentPassword);
+                if (validatedUser.UserID > 0)
                 {
-                    login = true;
-                    validatedUser = user;
+                    //creates a log, moves to the dashboard window, puts validated user into the dashboard.user User, hides the window 
+                    CreateLogEntry(validatedUser.UserID, "User Logged In", validatedUser.Username);
+                    ShowDashboard(validatedUser);
                 }
                 else
                 {
+                    //TODO: I'd like a log message here, but its tied to userID. 
                     lblloginError.Content = "Please Check your username or Password";
-                    //Dashboard dashboard = new Dashboard();
-                    //dashboard.ShowDialog();
-                    //this.Hide();
                 }
-                
             }
-            if (login)
-            {
-                CreateLogEntry(validatedUser.UserID, "User Logged In", validatedUser.Username);
-                Dashboard dashboard = new Dashboard();
-                dashboard.user = validatedUser;
-                dashboard.Owner = this;
-                this.Hide();
-                dashboard.ShowDialog();
-                            }
             else
             {
-                //TODO:Why does this fail, is it the int not getting passed as a INT?
-                CreateLogEntry(2, "Failed Login", "Admin");
+                lblloginError.Content = "Username or Password does not meet minumum requirements";
             }
         }
 
@@ -96,6 +92,60 @@ namespace ImageManagerUI
         {
             db.Entry(log).State = System.Data.Entity.EntityState.Added;
             db.SaveChanges();
+        }
+
+        private bool ValidateUserInput(string username, string password)
+        {
+            //submitting a value of true, then applying false if it fails input checks
+            bool validated = true;
+            if (username.Length == 0 || username.Length > 30)
+            {
+                validated = false;
+            }
+            //checks each character in the username, looking for numbers and returning false
+            foreach (char character in username)
+            {
+                if (character >= '0' && character <= '9')
+                {
+                    validated = false;
+                }
+            }
+            //checking if the password length is greater then 6 and less then 30
+            if (password.Length <= 6 || password.Length > 30)
+            {
+                validated = false;
+            }
+            return validated;
+        }
+
+        private User GetUserRecord(string username, string password)
+        {
+            User validatedUser = new User();
+            try
+            {
+                
+                foreach (var user in db.Users.Where(t => t.Username == username && t.Password == password))
+                {
+                    validatedUser = user;
+                }
+            }
+            catch (EntityException)
+            {
+                MessageBox.Show("Problem Connecting to Database. Contact your it administrator", "Connect to Datase", MessageBoxButton.OK);
+                this.Close();
+                Environment.Exit(0);
+                throw;
+            }
+            return validatedUser;
+        }
+
+        private void ShowDashboard(User validatedUser)
+        {
+            Dashboard dashboard = new Dashboard();
+            dashboard.user = validatedUser;
+            dashboard.Owner = this;
+            this.Hide();
+            dashboard.ShowDialog();
         }
     }
 }
