@@ -48,6 +48,8 @@ namespace ImageManagerUI
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             RefreshUserList();
+            //sets access level to 0 on page load
+            cboAccessLevel.SelectedIndex = 0;
 
         }
 
@@ -204,6 +206,13 @@ namespace ImageManagerUI
 
 
         }
-        
+
+        private void cboAccessLevel_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var theComboBox = (ComboBox)sender;
+            ComboBoxItem item = (ComboBoxItem)theComboBox.SelectedItem;
+            string value = item.Content.ToString();
+            MessageBox.Show("Content of combobox is " + value);
+        }
     }
 }
