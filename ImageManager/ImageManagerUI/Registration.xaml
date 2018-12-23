@@ -34,9 +34,9 @@
         <Label Grid.Row="3" Grid.Column="0" Content="Repeat Password" Margin="50,1" VerticalAlignment="Center"/>
         <Label Grid.Row="4" Grid.Column="0" Content="Email Address" Margin="50,1" VerticalAlignment="Center"/>
 
-        <TextBox Name="txtUserName" Grid.Row="1" Grid.Column="1"  VerticalAlignment="Center"/>
-        <TextBox Name="txtPassword" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" />
-        <TextBox Name="txtPassword2" Grid.Row="3" Grid.Column="1"  VerticalAlignment="Center" />
+        <TextBox Name="txtUserName" Grid.Row="1" Grid.Column="1"  VerticalAlignment="Center" ToolTip="Enter Username"/>
+        <PasswordBox Name="txtPassword" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" PasswordChar="*" ToolTip="Enter Password, greater then 6 characters, less then 30" />
+        <PasswordBox Name="txtPassword2" Grid.Row="3" Grid.Column="1"  VerticalAlignment="Center" PasswordChar="*" ToolTip="Enter Password a second time"/>
         <TextBox Name="txtEmail" Grid.Row="4" Grid.Column="1"  VerticalAlignment="Center"/>
 
         

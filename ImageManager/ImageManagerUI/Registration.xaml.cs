@@ -32,25 +32,66 @@ namespace ImageManagerUI
 
         private void btnLogin_Click(object sender, RoutedEventArgs e)
         {
-            User user = new User();
-            user.Username = txtUserName.Text.Trim();
-            user.Password = txtPassword.Text.Trim();
-            user.Email = txtEmail.Text.Trim();
-            user.LevelID = 3;
-            int saveSuccess = SaveUser(user);
-            if (saveSuccess == 1)
-            {
-                MessageBox.Show("User added, please login", "Save to Database");
-                MainWindow mainWindow = new MainWindow();
-                mainWindow.Show();
-                ClearUserDetails();
-                this.Hide();
-            }
-            else
-            {
-                MessageBox.Show("User Not added", "Save to Database");
-            }
+            //creates the variables needed for login
+            bool checkEmailAdd = false;
+            bool checkUserInput = false;
+            string emailInput = txtEmail.Text.Trim();
+            string username = txtUserName.Text.Trim();
+            string password = txtPassword.Password.Trim();
+            bool validUser = false;
 
+                   
+            try
+            {
+                checkEmailAdd = CheckEmail(emailInput);
+                checkUserInput = ValidateUserInput(username, password);
+                //First check, if email is valid
+                if (checkEmailAdd)
+                {
+                    validUser = true;
+                }
+                else
+                {
+                    MessageBox.Show("Not a valid Email Address", "User Registration", MessageBoxButton.OK);
+                    validUser = false;
+                }
+                //then check if inputs are correct
+                if (checkUserInput)
+                {
+                    validUser = true;
+                }
+                else
+                {
+                    MessageBox.Show("Problem with username or password", "User Registration", MessageBoxButton.OK);
+                    validUser = false;
+                }
+                //if it passes both tests, create entry in db with low level access
+                if (validUser)
+                {
+                    User user = new User();
+                    user.Username = txtUserName.Text.Trim();
+                    user.Password = txtPassword.Password.Trim();
+                    user.Email = txtEmail.Text.Trim();
+                    user.LevelID = 3;
+                    int saveSuccess = SaveUser(user);
+                    if (saveSuccess == 1)
+                    {
+                        MessageBox.Show("User added, please login", "Save to Database");
+                        MainWindow mainWindow = new MainWindow();
+                        mainWindow.Show();
+                        ClearUserDetails();
+                        this.Hide();
+                    }
+                    else
+                    {
+                        MessageBox.Show("User Not added", "Save to Database");
+                    }
+                }
+            }
+            catch 
+            {
+                MessageBox.Show("Issue with user registration", "User Registration", MessageBoxButton.OK);
+            }
         }
 
         private void btnLoginCancel_Click(object sender, RoutedEventArgs e)
@@ -75,5 +116,47 @@ namespace ImageManagerUI
             int saveSuccess = db.SaveChanges();
             return saveSuccess;
         }
+        /// <summary>
+        /// Checks string for email address and returns a false value if its not
+        /// </summary>
+        /// <param name="email"></param>
+        /// <returns>Returns True if email, false if not</returns>
+        private bool CheckEmail(string email)
+        {
+            try
+            {
+                var addr = new System.Net.Mail.MailAddress(email);
+                return addr.Address == email;
+            }
+            catch 
+            {
+                return false;                
+            }
+        }
+
+        private bool ValidateUserInput(string username, string password)
+        {
+            //submitting a value of false, then applying true if it passes input checks
+            bool validated = false;
+            if (username.Length == 0 || username.Length > 30)
+            {
+                validated = true;
+            }
+            //checks each character in the username, looking for numbers and returning true
+            foreach (char character in username)
+            {
+                if (character >= '0' && character <= '9')
+                {
+                    validated = true;
+                }
+            }
+            //checking if the password length is greater then 6 and less then 30
+            if (password.Length <= 6 || password.Length > 30)
+            {
+                validated = true;
+            }
+            return validated;
+        }
+
     }
 }
