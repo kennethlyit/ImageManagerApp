@@ -25,8 +25,10 @@ namespace ImageManagerUI
         ImageManageEntities db = new ImageManageEntities("metadata=res://*/ImageManagerModel.csdl|res://*/ImageManagerModel.ssdl|res://*/ImageManagerModel.msl;provider=System.Data.SqlClient;provider connection string='data source=192.168.81.100;initial catalog=ImageManage;persist security info=True;user id=ImageManagement;password=Letmein101;MultipleActiveResultSets=True;App=EntityFramework'");
 
         List<User> users = new List<User>();
+        List<AccessLevel> accessLevels = new List<AccessLevel>();
 
         User selectedUser = new User();
+        public User validateduser = new User();
 
         enum DBOperation
         {
@@ -61,59 +63,65 @@ namespace ImageManagerUI
 
         private void btnaddUser_Click(object sender, RoutedEventArgs e)
         {
-
-            //Create and populate user info into User class
-            if (dbOperation == DBOperation.Add)
+            try
             {
-                User user = new User();
-                user.Username = txtUserName.Text.Trim();
-                user.Password = txtPassword.Text.Trim();
-                user.Email = txtEmail.Text.Trim();
-                //Index Level matches Access Level values
-                user.LevelID = cboAccessLevel.SelectedIndex;
-                //Save the user
-                //SaveUser(user);
-
-                //Feedback on button click
-                int saveSuccess = SaveUser(user);
-                if (saveSuccess == 1)
+                if (dbOperation == DBOperation.Add)
                 {
-                    MessageBox.Show("User saved", "Save to Database");
-
-                    ClearUserDetails();
-                    lstUsers.Visibility = Visibility.Visible;
-                    stkNewUser.Visibility = Visibility.Collapsed;
-                }
-                else
-                {
-                    MessageBox.Show("Save Failed", "Save to Database");
-                }
-                RefreshUserList();
-                //TODO: Need to add logging here too
-            }
-            if (dbOperation == DBOperation.Modify)
-            {
-                foreach (var user in db.Users.Where(t => t.UserID == selectedUser.UserID))
-                {
+                    User user = new User();
                     user.Username = txtUserName.Text.Trim();
-                    user.Email = txtEmail.Text.Trim();
                     user.Password = txtPassword.Text.Trim();
+                    user.Email = txtEmail.Text.Trim();
+                    //Index Level matches Access Level values
                     user.LevelID = cboAccessLevel.SelectedIndex;
+                    //Feedback on button click
+                    int saveSuccess = SaveUser(user);
+                    if (saveSuccess == 1)
+                    {
+                        MessageBox.Show("User saved", "Save to Database",MessageBoxButton.OK);
+                        //Create a log Record
+                        CreateLogEntry(validateduser.UserID, (user.Username + "added by"), validateduser.Username);
+                        //Reset the users list, bring back the list view
+                        ClearUserDetails();
+                        lstUsers.Visibility = Visibility.Visible;
+                        stkNewUser.Visibility = Visibility.Collapsed;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Save Failed", "Save to Database");
+                    }
+                    RefreshUserList();
+                    
                 }
-                int saveSuccess = db.SaveChanges();
-                if (saveSuccess == 1)
+                if (dbOperation == DBOperation.Modify)
                 {
-                    MessageBox.Show("User saved", "Save to Database");
-
+                    foreach (var user in db.Users.Where(t => t.UserID == selectedUser.UserID))
+                    {
+                        user.Username = txtUserName.Text.Trim();
+                        user.Email = txtEmail.Text.Trim();
+                        user.Password = txtPassword.Text.Trim();
+                        user.LevelID = cboAccessLevel.SelectedIndex;
+                        
+                    }
+                    int saveSuccess = db.SaveChanges();
+                    if (saveSuccess == 1)
+                    {
+                        MessageBox.Show("User saved", "Save to Database");
+                        CreateLogEntry(validateduser.UserID, (selectedUser.Username + "modified by"), validateduser.Username);
+                        ClearUserDetails();
+                        stkNewUser.Visibility = Visibility.Collapsed;
+                        lstUsers.Visibility = Visibility.Visible;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Save Failed", "Save to Database");
+                    }
                     ClearUserDetails();
-                    stkNewUser.Visibility = Visibility.Collapsed;
-                    lstUsers.Visibility = Visibility.Visible;
                 }
-                else
-                {
-                    MessageBox.Show("Save Failed", "Save to Database");
-                }
-                ClearUserDetails();
+            }
+            catch
+            {
+                MessageBox.Show("Issue with User Tables", "User Tables", MessageBoxButton.OK);
+                
             }
 
         }
@@ -140,6 +148,7 @@ namespace ImageManagerUI
             int saveSucess = db.SaveChanges();
             if (saveSucess == 1)
             {
+                CreateLogEntry(validateduser.UserID, (selectedUser.Username + "deleted by"), validateduser.Username);
                 RefreshUserList();
                 ClearUserDetails();
                 MessageBox.Show("User Deleted", "Save to Database");
@@ -171,13 +180,38 @@ namespace ImageManagerUI
 
         private void RefreshUserList()
         {
-            lstUsers.ItemsSource = users;
-            users.Clear();
-            foreach (var user in db.Users)
+            try
             {
-                users.Add(user);
+                //clear both lists
+                users.Clear();
+                accessLevels.Clear();
+                //poulate both lists
+                foreach (var user in db.Users)
+                {
+                    users.Add(user);
+                }
+                foreach (var level in db.AccessLevels)
+                {
+                    accessLevels.Add(level);
+                }
+                //Do the join 
+                var accessLevelName = from details in users
+                                      join level in accessLevels on details.LevelID equals level.LevelID
+                                      select new
+                                      {
+                                          details.Username,
+                                          details.Password,
+                                          details.Email,
+                                          levelID = level.JobRole
+                                      };
+                lstUsers.ItemsSource = accessLevelName;
+                lstUsers.Items.Refresh();
             }
-            lstUsers.Items.Refresh();
+
+            catch
+            {
+                MessageBox.Show("Something went wrong with logs retrieval", "Logs Retrieval", MessageBoxButton.OK);
+            }
         }
 
         private void ClearUserDetails()
@@ -212,7 +246,22 @@ namespace ImageManagerUI
             var theComboBox = (ComboBox)sender;
             ComboBoxItem item = (ComboBoxItem)theComboBox.SelectedItem;
             string value = item.Content.ToString();
-            MessageBox.Show("Content of combobox is " + value);
+          }
+
+        private void CreateLogEntry(int userID, string description, string userName)
+        {
+            string comment = $"{description} user = {userName}";
+            Log log = new Log();
+            log.UserID = userID;
+            log.Description = comment;
+            log.Date = DateTime.Now;
+            SaveLog(log);
+        }
+
+        private void SaveLog(Log log)
+        {
+            db.Entry(log).State = System.Data.Entity.EntityState.Added;
+            db.SaveChanges();
         }
     }
 }

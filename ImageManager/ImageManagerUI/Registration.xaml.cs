@@ -23,8 +23,14 @@ namespace ImageManagerUI
 
         ImageManageEntities db = new ImageManageEntities("metadata=res://*/ImageManagerModel.csdl|res://*/ImageManagerModel.ssdl|res://*/ImageManagerModel.msl;provider=System.Data.SqlClient;provider connection string='data source=192.168.81.100;initial catalog=ImageManage;persist security info=True;user id=ImageManagement;password=Letmein101;MultipleActiveResultSets=True;App=EntityFramework'");
 
-        
+        enum DBOperation
+        {
+            Add,
+            Modify
+        }
 
+
+        
         public Registration()
         {
             InitializeComponent();

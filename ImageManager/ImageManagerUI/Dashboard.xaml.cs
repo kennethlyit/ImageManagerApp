@@ -34,6 +34,7 @@ namespace ImageManagerUI
         private void btnAdminUsers_Click(object sender, RoutedEventArgs e)
         {
             Users usersPage = new Users();
+            usersPage.validateduser = user;
             frmMain.Navigate(usersPage);
         }
 
