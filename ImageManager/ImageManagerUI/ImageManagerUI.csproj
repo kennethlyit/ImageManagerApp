@@ -160,5 +160,14 @@
       <Name>DBLibrary</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Background.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Email-Icon.png" />
+    <Resource Include="Images\Image-manager-logo.png" />
+    <Resource Include="Images\Password-Icon.png" />
+    <Resource Include="Images\User-Icon.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
