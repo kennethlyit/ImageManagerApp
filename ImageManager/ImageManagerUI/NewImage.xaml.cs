@@ -45,33 +45,34 @@ namespace ImageManagerUI
 
         private void btnaddImage_Click(object sender, RoutedEventArgs e)
         {
-            try
+            bool inputscorrect = ImagesInputCheck();
+            if (inputscorrect)
             {
-                bool inputscorrect = ImagesInputCheck();
-                if (inputscorrect)
+                DBLibrary.Image savedimage = new DBLibrary.Image();
+                savedimage.ImageName = txtImageName.Text.Trim();
+                savedimage.Notes = txtImageNotes.Text.Trim();
+                savedimage.VendorID = cbovendor.SelectedIndex + 1;
+                savedimage.UseCaseID = cbousedIn.SelectedIndex + 1;
+                int saveSuccess = SaveImage(savedimage);
+                if (saveSuccess == 1)
                 {
-                    DBLibrary.Image savedimage = new DBLibrary.Image();
-                    savedimage.ImageName = txtImageName.Text.Trim();
-                    savedimage.Notes = txtImageNotes.Text.Trim();
-                    savedimage.VendorID = cbovendor.SelectedIndex;
-                    savedimage.UseCaseID = cbousedIn.SelectedIndex;
-                    savedimage.date = DateTime.Now;
-                    int saveSuccess = SaveImage(savedimage);
-                    if (saveSuccess == 1)
-                    {
-                        MessageBox.Show("Image Details Saved", "Image save", MessageBoxButton.OK);
-                        CreateLogEntry(loggedInUser.UserID, ("added image" + savedimage.ImageName), loggedInUser.Username);
-                        ClearImagesInputs();
-                        Dashboard dashboard = new Dashboard();
-                        dashboard.ImageFrameChange();
-                    }
+                    MessageBox.Show("Image Details Saved", "Image save", MessageBoxButton.OK);
+                    CreateLogEntry(loggedInUser.UserID, ("added image" + savedimage.ImageName), loggedInUser.Username);
+                    ClearImagesInputs();
+                    Dashboard dashboard = new Dashboard();
+                    dashboard.ImageFrameChange();
                 }
+            }            
+        }
 
-            }
-            catch 
-            {
-                MessageBox.Show("That did not add the image");                
-            }
+        private int SaveImage(DBLibrary.Image image)
+        {
+            db.Entry(image).State = System.Data.Entity.EntityState.Added;
+            int saveSuccess2 = db.SaveChanges();
+            return saveSuccess2;
+            //db.Entry(image).State = System.Data.Entity.EntityState.Added;
+            //int saveSuccess = db.SaveChanges();
+            //return saveSuccess;
         }
 
 
@@ -91,12 +92,7 @@ namespace ImageManagerUI
             db.SaveChanges();
         }
 
-        private int SaveImage(DBLibrary.Image images2)
-        {
-            db.Entry(images2).State = System.Data.Entity.EntityState.Added;
-            int saveSuccess = db.SaveChanges();
-            return saveSuccess;
-        }
+
 
 
         /// <summary>

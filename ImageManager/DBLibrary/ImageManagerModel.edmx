@@ -19,8 +19,9 @@
           <Property Name="ImageID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="VendorID" Type="int" Nullable="false" />
           <Property Name="UseCaseID" Type="int" Nullable="false" />
-          <Property Name="Notes" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Notes" Type="varchar" MaxLength="120" Nullable="false" />
           <Property Name="date" Type="datetime" Nullable="false" />
+          <Property Name="ImageName" Type="varchar" MaxLength="120" Nullable="false" />
         </EntityType>
         <EntityType Name="Log">
           <Key>
@@ -147,10 +148,11 @@
           <Property Name="ImageID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="VendorID" Type="Int32" Nullable="false" />
           <Property Name="UseCaseID" Type="Int32" Nullable="false" />
-          <Property Name="Notes" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Notes" Type="String" MaxLength="120" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="date" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="UseCase" Relationship="Self.FK_Image_To_UseCaseID" FromRole="Image" ToRole="UseCase" />
           <NavigationProperty Name="Vendor" Relationship="Self.FK_Image_To_Vendor" FromRole="Image" ToRole="Vendor" />
+          <Property Name="ImageName" Type="String" Nullable="false" MaxLength="120" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Log">
           <Key>
@@ -280,6 +282,7 @@
           <EntitySetMapping Name="Images">
             <EntityTypeMapping TypeName="ImageManageModel.Image">
               <MappingFragment StoreEntitySet="Image">
+                <ScalarProperty Name="ImageName" ColumnName="ImageName" />
                 <ScalarProperty Name="ImageID" ColumnName="ImageID" />
                 <ScalarProperty Name="VendorID" ColumnName="VendorID" />
                 <ScalarProperty Name="UseCaseID" ColumnName="UseCaseID" />

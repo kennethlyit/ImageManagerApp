@@ -18,8 +18,8 @@ namespace DBLibrary
         public int VendorID { get; set; }
         public int UseCaseID { get; set; }
         public string Notes { get; set; }
-        public string ImageName { get; set; }
         public System.DateTime date { get; set; }
+        public string ImageName { get; set; }
     
         public virtual UseCase UseCase { get; set; }
         public virtual Vendor Vendor { get; set; }

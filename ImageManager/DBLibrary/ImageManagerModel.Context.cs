@@ -12,7 +12,7 @@ namespace DBLibrary
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
-    
+
     public partial class ImageManageEntities : DbContext
     {
         public ImageManageEntities(string connectionstring)
