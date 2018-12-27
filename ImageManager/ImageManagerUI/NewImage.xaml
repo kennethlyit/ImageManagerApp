@@ -6,6 +6,7 @@
       xmlns:local="clr-namespace:ImageManagerUI"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
+      Loaded="Page_Loaded"
       Title="NewImage">
 
     <Grid>
@@ -33,7 +34,7 @@
                 <ComboBox Name="cbovendor" Grid.Column="1" Grid.Row="2" Width="200" HorizontalAlignment="Left" SelectionChanged="cbovendor_SelectionChanged">
                     <ComboBox.ItemTemplate>
                         <DataTemplate>
-                            <TextBlock Text="{Binding VendorID}"/>
+                            <TextBlock Text="{Binding VendorName}"/>
                         </DataTemplate>
                     </ComboBox.ItemTemplate>
                 </ComboBox>
@@ -42,7 +43,7 @@
                 <ComboBox Name="cbousedIn" Grid.Column="1" Grid.Row="3" Width="200" HorizontalAlignment="Left" SelectionChanged="cbousedIn_SelectionChanged">
                     <ComboBox.ItemTemplate>
                         <DataTemplate>
-                            <TextBlock Text="{Binding UseCaseID}"/>
+                            <TextBlock Text="{Binding UseCaseDescription}"/>
                         </DataTemplate>
                     </ComboBox.ItemTemplate>
 
@@ -54,7 +55,6 @@
 
                 <StackPanel Grid.Column="1" Grid.Row="5" HorizontalAlignment="Center" Orientation="Horizontal">
                     <Button Content="Add" Width="60" Name="btnaddImage" Click="btnaddImage_Click"/>
-                    <Button Content="Cancel" Width="60" Name="btncancelImage" Click="btncancelImage_Click"/>
                 </StackPanel>
             </Grid>
         </StackPanel>

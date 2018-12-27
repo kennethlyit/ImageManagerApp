@@ -219,7 +219,7 @@ namespace ImageManagerUI
             txtEmail.Text = "";
             txtPassword.Text = "";
             txtUserName.Text = "";
-            cboAccessLevel.SelectedIndex = 0;
+            cboAccessLevel.SelectedIndex = -1;
         }
 
         private void lstUsers_SelectionChanged(object sender, SelectionChangedEventArgs e)

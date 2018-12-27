@@ -29,8 +29,7 @@ namespace ImageManagerUI
             Modify
         }
 
-
-        
+                
         public Registration()
         {
             InitializeComponent();

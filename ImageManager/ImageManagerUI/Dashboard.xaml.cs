@@ -68,6 +68,7 @@ namespace ImageManagerUI
         private void btnNewImage_Click(object sender, RoutedEventArgs e)
         {
             NewImage newImage = new NewImage();
+            newImage.loggedInUser = user;
             frmMain.Navigate(newImage);
         }
 
@@ -122,6 +123,12 @@ namespace ImageManagerUI
         }
 
         private void btnHome_Click(object sender, RoutedEventArgs e)
+        {
+            ImageView imageView = new ImageView();
+            frmMain.Navigate(imageView);
+        }
+
+        public void ImageFrameChange()
         {
             ImageView imageView = new ImageView();
             frmMain.Navigate(imageView);

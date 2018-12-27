@@ -145,7 +145,7 @@
                                       Opacity=".70"
                                       ShadowDepth="4"/>
                 </Border.Effect>
-                <Frame Name="frmMain" NavigationUIVisibility="Hidden"/>
+                <Frame x:Name="frmMain" NavigationUIVisibility="Hidden" x:FieldModifier="public"/>
             </Border>
 
         </DockPanel>
