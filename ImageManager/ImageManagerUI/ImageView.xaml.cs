@@ -20,54 +20,56 @@ namespace ImageManagerUI
     /// </summary>
     public partial class ImageView : Page
     {
+        public string ImageSearchString;
+
         public ImageView()
         {
             InitializeComponent();
         }
 
-        private void mnuAddImage_Click(object sender, RoutedEventArgs e)
-        {
+        //private void mnuAddImage_Click(object sender, RoutedEventArgs e)
+        //{
 
-        }
+        //}
 
-        private void mnudeleteImage_Click(object sender, RoutedEventArgs e)
-        {
+        //private void mnudeleteImage_Click(object sender, RoutedEventArgs e)
+        //{
 
-        }
+        //}
 
-        private void mnumodifyImage_Click(object sender, RoutedEventArgs e)
-        {
+        //private void mnumodifyImage_Click(object sender, RoutedEventArgs e)
+        //{
 
-        }
+        //}
 
-        private void mnuaddVendor_Click(object sender, RoutedEventArgs e)
-        {
+        //private void mnuaddVendor_Click(object sender, RoutedEventArgs e)
+        //{
 
-        }
+        //}
 
-        private void cbousedIn_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
+        //private void cbousedIn_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        //{
 
-        }
+        //}
 
-        private void cbovendor_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
+        //private void cbovendor_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        //{
 
-        }
+        //}
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
+        //private void Button_Click(object sender, RoutedEventArgs e)
+        //{
 
-        }
+        //}
 
-        private void btnaddImage_Click(object sender, RoutedEventArgs e)
-        {
+        //private void btnaddImage_Click(object sender, RoutedEventArgs e)
+        //{
 
-        }
+        //}
 
-        private void btncancelImage_Click(object sender, RoutedEventArgs e)
-        {
+        //private void btncancelImage_Click(object sender, RoutedEventArgs e)
+        //{
 
-        }
+        //}
     }
 }

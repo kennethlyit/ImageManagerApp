@@ -72,7 +72,7 @@
                         </Style>
                     </Button.Style>
                 </Button>
-                <Button Name="btnLogin"  Width="200" Height="26" Content="Register" Click="btnRegister_Click" Margin="5,5,5,5">
+                <Button Name="btnLogin"  Width="200" Height="26" Content="Register" Click="btnLogin_Click" Margin="5,5,5,5">
                     <Button.Style>
                         <Style TargetType="{x:Type Button}">
                             <Setter Property="Background" Value="#38658a"/>

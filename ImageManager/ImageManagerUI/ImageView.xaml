@@ -12,16 +12,28 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="5*"/>
         </Grid.RowDefinitions>
+        <Grid.Resources>
+            <Style TargetType="ListViewItem">
+                <Style.Triggers>
+                    <Trigger Property="ItemsControl.AlternationIndex"  Value="0">
+                        <Setter Property="Background" Value="White" />
+                    </Trigger>
+                    <Trigger Property="ItemsControl.AlternationIndex"  Value="1">
+                        <Setter Property="Background" Value="#F0F0F0" />
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+        </Grid.Resources>
         <StackPanel>
-            <ListView Name="lstimages" Grid.Row="0" Visibility="Collapsed">
-                <ListView.ContextMenu>
+            <ListView Name="lstimages" Grid.Row="0" Visibility="Visible" AlternationCount="2">
+                <!--<ListView.ContextMenu>
                     <ContextMenu Name="mnuImages" IsEnabled="True">
                         <MenuItem Header="Add Image" Name="mnuAddImage" Click="mnuAddImage_Click"   IsEnabled="True"/>
                         <MenuItem Header="Delete Image" Name="mnudeleteImage" Click="mnudeleteImage_Click"   IsEnabled="False"/>
                         <MenuItem Header="Modify Image" Name="mnumodifyImage" Click="mnumodifyImage_Click"  IsEnabled="False"/>
                         <MenuItem Header="Add Vendor" Name="mnuaddVendor" Click="mnuaddVendor_Click"  IsEnabled="False"/>
                     </ContextMenu>
-                </ListView.ContextMenu>
+                </ListView.ContextMenu>-->
                 <ListView.View>
                     <GridView>
                         <GridViewColumn Header="ImageName" Width="150">
@@ -69,7 +81,7 @@
                 </ListView.View>
             </ListView>
         </StackPanel>
-        <StackPanel Grid.Row="0">
+        <!--<StackPanel Grid.Row="0">
             <TabControl Height="400">
                 <TabControl.Resources>
                     <Style TargetType="{x:Type TabItem}">
@@ -138,6 +150,6 @@
                     
                 </TabItem>
             </TabControl>            
-        </StackPanel>        
+        </StackPanel>-->     
     </Grid>
 </Page>

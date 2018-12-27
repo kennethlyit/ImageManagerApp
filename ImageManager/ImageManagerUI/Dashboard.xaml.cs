@@ -26,10 +26,10 @@ namespace ImageManagerUI
             InitializeComponent();
         }
 
-        private void btnAdminAdmin_Click(object sender, RoutedEventArgs e)
-        {
+        //private void btnAdminAdmin_Click(object sender, RoutedEventArgs e)
+        //{
 
-        }
+        //}
 
         private void btnAdminUsers_Click(object sender, RoutedEventArgs e)
         {
@@ -67,7 +67,8 @@ namespace ImageManagerUI
 
         private void btnNewImage_Click(object sender, RoutedEventArgs e)
         {
-
+            NewImage newImage = new NewImage();
+            frmMain.Navigate(newImage);
         }
 
         //Check User access level and make buttons visible, runs in XAML in dashboard app in Window Loaded
@@ -79,7 +80,7 @@ namespace ImageManagerUI
             }
             if (user.LevelID == 2)  //admin user 
             {
-                btnAdminAdmin.Visibility = Visibility.Visible;
+                //btnAdminAdmin.Visibility = Visibility.Visible;
                 btnAdminLogs.Visibility = Visibility.Visible;
                 btnAdminUsers.Visibility = Visibility.Visible;
             }
@@ -88,6 +89,42 @@ namespace ImageManagerUI
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             CheckUserAccess(user);
+            ImageView imageView = new ImageView();
+            frmMain.Navigate(imageView);
+        }
+
+        private void btnStartSearch_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                string searchRequest = txtSearchInput.Text.Trim();
+                if (String.IsNullOrEmpty(searchRequest))
+                {
+                    MessageBox.Show("Nothing in SearchBox", "Dashboard Search", MessageBoxButton.OK);
+                    return;
+                }
+                else
+                {
+                    ImageView imagesearchview = new ImageView();
+                    imagesearchview.ImageSearchString = searchRequest;
+                    txtSearchInput.Clear();
+                    frmMain.Navigate(imagesearchview);
+                }
+            }
+            catch
+            {
+
+                MessageBox.Show("Search went wrong", "Dashboard Search", MessageBoxButton.OK);
+            }
+
+    
+
+        }
+
+        private void btnHome_Click(object sender, RoutedEventArgs e)
+        {
+            ImageView imageView = new ImageView();
+            frmMain.Navigate(imageView);
         }
     }
 }

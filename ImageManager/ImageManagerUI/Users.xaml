@@ -15,9 +15,21 @@
             <RowDefinition Height="10*"/>
 
         </Grid.RowDefinitions>
+        <Grid.Resources>
+            <Style TargetType="ListViewItem">
+                <Style.Triggers>
+                    <Trigger Property="ItemsControl.AlternationIndex"  Value="0">
+                        <Setter Property="Background" Value="White" />
+                    </Trigger>
+                    <Trigger Property="ItemsControl.AlternationIndex"  Value="1">
+                        <Setter Property="Background" Value="#F0F0F0" />
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+        </Grid.Resources>
 
-        <StackPanel>
-            <ListView Name="lstUsers" Grid.Row="0" SelectionChanged="lstUsers_SelectionChanged" Visibility="Visible">
+    <StackPanel>
+            <ListView Name="lstUsers" Grid.Row="0" SelectionChanged="lstUsers_SelectionChanged" Visibility="Visible" AlternationCount="2">
                 <ListView.ContextMenu>
                     <ContextMenu Name="mnuUserListOverview" IsEnabled="True">
                         <MenuItem Header="New User" Name="muNewUser" Click="muNewUser_Click" IsEnabled="True"/>

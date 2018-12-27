@@ -84,6 +84,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Dictionary1.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ImageView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -168,6 +172,21 @@
     <Resource Include="Images\Image-manager-logo.png" />
     <Resource Include="Images\Password-Icon.png" />
     <Resource Include="Images\User-Icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\favicon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Admin.png" />
+    <Resource Include="Images\Exit.png" />
+    <Resource Include="Images\Home.png" />
+    <Resource Include="Images\Log-out.png" />
+    <Resource Include="Images\Logs.png" />
+    <Resource Include="Images\Search.png" />
+    <Resource Include="Images\Users.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Add-Image.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -9,6 +9,54 @@
       Title="NewImage">
 
     <Grid>
-        
+        <StackPanel Name="stkimageStackPanel" Visibility="Visible">
+            <Grid Background="White">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="3*"/>
+                    <ColumnDefinition Width="7*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                </Grid.RowDefinitions>
+
+                <Label Grid.Row="0" Grid.Column="0" Content="Add Image" Grid.ColumnSpan="2" FontSize="14" HorizontalAlignment="Center" FontStyle="Italic"/>
+
+                <Label Grid.Row="1" Grid.Column="0" Content="Image Name" Background="White" />
+                <TextBox Name="txtImageName" Grid.Row="1" Grid.Column="1" TabIndex="0"/>
+
+                <Label Grid.Row="2" Grid.Column="0" Content="VendorID" Background="White" />
+                <ComboBox Name="cbovendor" Grid.Column="1" Grid.Row="2" Width="200" HorizontalAlignment="Left" SelectionChanged="cbovendor_SelectionChanged">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding VendorID}"/>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+
+                <Label Grid.Row="3" Grid.Column="0" Content="Used In" />
+                <ComboBox Name="cbousedIn" Grid.Column="1" Grid.Row="3" Width="200" HorizontalAlignment="Left" SelectionChanged="cbousedIn_SelectionChanged">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding UseCaseID}"/>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+
+                </ComboBox>
+
+
+                <Label Grid.Row="4" Grid.Column="0" Content="Notes" />
+                <TextBox Name="txtImageNotes" Grid.Row="4" Grid.Column="1" TabIndex="4"/>
+
+                <StackPanel Grid.Column="1" Grid.Row="5" HorizontalAlignment="Center" Orientation="Horizontal">
+                    <Button Content="Add" Width="60" Name="btnaddImage" Click="btnaddImage_Click"/>
+                    <Button Content="Cancel" Width="60" Name="btncancelImage" Click="btncancelImage_Click"/>
+                </StackPanel>
+            </Grid>
+        </StackPanel>
     </Grid>
 </Page>

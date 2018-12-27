@@ -4,6 +4,27 @@
              xmlns:local="clr-namespace:ImageManagerUI"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+
+        <Style x:Key="dashboardButton" TargetType="{x:Type Button}">
+            <Setter Property="Background" Value="#135089"/>
+            <Setter Property="Foreground" Value="#F0F0f0"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#F0F0F0"/>
+                    <Setter Property="Foreground" Value="#135089"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+       
+
     </Application.Resources>
 </Application>
