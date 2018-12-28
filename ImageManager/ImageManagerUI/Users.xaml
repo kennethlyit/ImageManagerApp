@@ -66,7 +66,7 @@
                         <GridViewColumn Header="Role" Width="150">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBlock Name="txtJobrole" HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="{Binding LevelID}" />
+                                    <TextBlock Name="txtJobrole" HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="{Binding JobRole}" />
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>

@@ -53,6 +53,7 @@ namespace ImageManagerUI
                 savedimage.Notes = txtImageNotes.Text.Trim();
                 savedimage.VendorID = cbovendor.SelectedIndex + 1;
                 savedimage.UseCaseID = cbousedIn.SelectedIndex + 1;
+                savedimage.date = DateTime.Now;
                 int saveSuccess = SaveImage(savedimage);
                 if (saveSuccess == 1)
                 {

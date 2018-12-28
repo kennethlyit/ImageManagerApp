@@ -91,6 +91,7 @@ namespace ImageManagerUI
         {
             CheckUserAccess(user);
             ImageView imageView = new ImageView();
+            imageView.loggedinUser = user;
             frmMain.Navigate(imageView);
         }
 
@@ -107,6 +108,7 @@ namespace ImageManagerUI
                 else
                 {
                     ImageView imagesearchview = new ImageView();
+                    imagesearchview.loggedinUser = user;
                     imagesearchview.ImageSearchString = searchRequest;
                     txtSearchInput.Clear();
                     frmMain.Navigate(imagesearchview);
@@ -125,12 +127,14 @@ namespace ImageManagerUI
         private void btnHome_Click(object sender, RoutedEventArgs e)
         {
             ImageView imageView = new ImageView();
+            imageView.loggedinUser = user;
             frmMain.Navigate(imageView);
         }
 
         public void ImageFrameChange()
         {
             ImageView imageView = new ImageView();
+            imageView.loggedinUser = user;
             frmMain.Navigate(imageView);
         }
     }

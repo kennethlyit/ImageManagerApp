@@ -202,7 +202,7 @@ namespace ImageManagerUI
                                           details.Username,
                                           details.Password,
                                           details.Email,
-                                          levelID = level.JobRole
+                                          level.JobRole
                                       };
                 lstUsers.ItemsSource = accessLevelName;
                 lstUsers.Items.Refresh();

@@ -6,6 +6,7 @@
       xmlns:local="clr-namespace:ImageManagerUI"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
+      Loaded="Page_Loaded"
       Title="ImageView">
 
     <Grid>
@@ -25,21 +26,18 @@
             </Style>
         </Grid.Resources>
         <StackPanel>
-            <ListView Name="lstimages" Grid.Row="0" Visibility="Visible" AlternationCount="2">
-                <!--<ListView.ContextMenu>
+            <ListView Name="lstimages" Grid.Row="0" Visibility="Visible" AlternationCount="2" HorizontalAlignment="Stretch" SelectionChanged="lstimages_SelectionChanged" >
+                <ListView.ContextMenu>
                     <ContextMenu Name="mnuImages" IsEnabled="True">
-                        <MenuItem Header="Add Image" Name="mnuAddImage" Click="mnuAddImage_Click"   IsEnabled="True"/>
                         <MenuItem Header="Delete Image" Name="mnudeleteImage" Click="mnudeleteImage_Click"   IsEnabled="False"/>
-                        <MenuItem Header="Modify Image" Name="mnumodifyImage" Click="mnumodifyImage_Click"  IsEnabled="False"/>
-                        <MenuItem Header="Add Vendor" Name="mnuaddVendor" Click="mnuaddVendor_Click"  IsEnabled="False"/>
                     </ContextMenu>
-                </ListView.ContextMenu>-->
+                </ListView.ContextMenu>
                 <ListView.View>
                     <GridView>
                         <GridViewColumn Header="ImageName" Width="150">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="{Binding ImageID}"/>
+                                    <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="{Binding ImageName}"/>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
@@ -55,7 +53,7 @@
                         <GridViewColumn Header="Vendor" Width="150">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="{Binding VendorID}"/>
+                                    <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="{Binding VendorName}"/>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
@@ -63,12 +61,12 @@
                         <GridViewColumn Header="Used In" Width="150">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="{Binding UseCaseID}" />
+                                    <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="{Binding UseCaseDescription}" />
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
                         
-                        <GridViewColumn Header="Notes" Width="150">
+                        <GridViewColumn Header="Notes" Width="250">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="{Binding Notes}" />

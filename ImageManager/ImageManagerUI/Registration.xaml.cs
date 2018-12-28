@@ -38,7 +38,6 @@ namespace ImageManagerUI
         private void btnLogin_Click(object sender, RoutedEventArgs e)
         {
             //creates the variables needed for login
-            bool checkEmailAdd = false;
             bool checkUserInput = false;
             string emailInput = txtEmail.Text.Trim();
             string username = txtUserName.Text.Trim();
@@ -48,18 +47,7 @@ namespace ImageManagerUI
                    
             try
             {
-                checkEmailAdd = CheckEmail(emailInput);
-                checkUserInput = ValidateUserInput(username, password);
-                //First check, if email is valid
-                if (checkEmailAdd)
-                {
-                    validUser = true;
-                }
-                else
-                {
-                    MessageBox.Show("Not a valid Email Address", "User Registration", MessageBoxButton.OK);
-                    validUser = false;
-                }
+                checkUserInput = ValidateUserInput(username, password, emailInput);
                 //then check if inputs are correct
                 if (checkUserInput)
                 {
@@ -126,23 +114,24 @@ namespace ImageManagerUI
         /// </summary>
         /// <param name="email"></param>
         /// <returns>Returns True if email, false if not</returns>
-        private bool CheckEmail(string email)
-        {
-            try
-            {
-                var addr = new System.Net.Mail.MailAddress(email);
-                return addr.Address == email;
-            }
-            catch 
-            {
-                return false;                
-            }
-        }
+        //private bool CheckEmail(string email)
+        //{
+        //    try
+        //    {
+        //        var addr = new System.Net.Mail.MailAddress(email);
+        //        return addr.Address == email;
+        //    }
+        //    catch 
+        //    {
+        //        return false;                
+        //    }
+        //}
 
-        private bool ValidateUserInput(string username, string password)
+        private bool ValidateUserInput(string username, string password, string email)
         {
             //submitting a value of false, then applying true if it passes input checks
             bool validated = false;
+            var addr = new System.Net.Mail.MailAddress(email);
             if (username.Length == 0 || username.Length > 30)
             {
                 validated = true;
@@ -157,6 +146,11 @@ namespace ImageManagerUI
             }
             //checking if the password length is greater then 6 and less then 30
             if (password.Length <= 6 || password.Length > 30)
+            {
+                validated = true;
+            }
+            //email check using .net library
+            if (addr.Address == email)
             {
                 validated = true;
             }
