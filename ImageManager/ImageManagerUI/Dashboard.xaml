@@ -100,10 +100,10 @@
         </StackPanel>
 
         <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" >
-            <Button Name ="btnHome" Width="60" Height="26" Margin="20,0" Style="{DynamicResource dashboardButton}" Click="btnHome_Click">
+            <Button Name ="btnHome" Width="Auto" Height="26" Margin="20,0" Style="{DynamicResource dashboardButton}" Click="btnHome_Click">
                 <StackPanel Orientation="Horizontal">
-                    <Image Source="Images/Home.png" MaxHeight="18"/>
-                    <TextBlock VerticalAlignment="Center" >Home</TextBlock>
+                    <Image Source="Images/Home.png" MaxHeight="18" Margin="4,4,4,4"/>
+                    <TextBlock VerticalAlignment="Center" Margin="4,4,4,4">Home</TextBlock>
                 </StackPanel>
             </Button>
             <Button Name="btnNewImage" HorizontalAlignment="Left" Margin="10,0,10,0" Height="26" Width="Auto" Click="btnNewImage_Click" Visibility="Collapsed" Style="{DynamicResource dashboardButton}">
