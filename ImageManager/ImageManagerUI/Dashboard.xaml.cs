@@ -81,7 +81,7 @@ namespace ImageManagerUI
             }
             if (user.LevelID == 2)  //admin user 
             {
-                //btnAdminAdmin.Visibility = Visibility.Visible;
+                btnAdminReports.Visibility = Visibility.Visible;
                 btnAdminLogs.Visibility = Visibility.Visible;
                 btnAdminUsers.Visibility = Visibility.Visible;
             }
