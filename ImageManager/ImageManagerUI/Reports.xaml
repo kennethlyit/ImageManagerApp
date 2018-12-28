@@ -9,7 +9,7 @@
       Loaded="Page_Loaded"
       Title="Reports">
 
-    <Grid Background="White">
+    <Grid Background="#f0f0f0">
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>
             <RowDefinition Height="1*"/>
@@ -20,7 +20,7 @@
             <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
         <ScrollViewer Grid.Row="0" Margin="10" Grid.ColumnSpan="2" VerticalScrollBarVisibility="Auto">
-            <TextBlock Name="tbkResultsOutput" TextWrapping="Wrap" FontSize="14" />
+            <TextBlock Name="tbkResultsOutput" TextWrapping="Wrap" FontSize="14" Foreground="#135089"/>
         </ScrollViewer>
         
         <StackPanel Grid.Row="1" Grid.ColumnSpan="2" VerticalAlignment="Center">
@@ -35,23 +35,23 @@
                     <ColumnDefinition Width="1*"/>
                     <ColumnDefinition Width="1*"/>
                 </Grid.ColumnDefinitions>
-                <Label Grid.Column="0" Content="Pick Report type" HorizontalAlignment="Center" FontSize="16"/>
-                <Label Grid.Column="1" Content="Choose Database table" HorizontalAlignment="Center" FontSize="16"/>
+                <Label Grid.Column="0" Content="Pick Report type" HorizontalAlignment="Center" FontSize="16" Foreground="#135089"/>
+                <Label Grid.Column="1" Content="Choose Database table" HorizontalAlignment="Center" FontSize="16" Foreground="#135089"/>
                 <!--Row 1-->
-                <ComboBox Name="cboReport" Grid.Column="0" Grid.Row="1" Height="20" Width="100" Margin="10" SelectedIndex="0" SelectionChanged="cboReport_SelectionChanged" >
+                <ComboBox Name="cboReport" Grid.Column="0" Grid.Row="1" Height="20" Foreground="#135089" Width="100" Margin="10" SelectedIndex="0" SelectionChanged="cboReport_SelectionChanged" >
                     <ComboBoxItem Content="Please Select" />
                     <ComboBoxItem Content="Summary" />
                     <ComboBoxItem Content="Count" />
                     <ComboBoxItem Content="Stats" />
                 </ComboBox>
-                <ComboBox Name="cboDatebaseType" Grid.Column="1" Grid.Row="1" Height="20" Width="100" Margin="10" SelectedIndex="0" SelectionChanged="cboDatebaseType_SelectionChanged">
+                <ComboBox Name="cboDatebaseType" Grid.Column="1" Grid.Row="1" Height="20" Foreground="#135089" Width="100" Margin="10" SelectedIndex="0" SelectionChanged="cboDatebaseType_SelectionChanged">
                     <ComboBoxItem Content="Please Select" />
                     <ComboBoxItem Content="Images" />
                     <ComboBoxItem Content="Logs" />
                     <ComboBoxItem Content="Users" />
                 </ComboBox>
                 <!--Row 2-->
-                <Button Name="btnAnalyse" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Width="150" Content="Analyse" Margin="20" Click="btnAnalyse_Click"/>
+                <Button Name="btnAnalyse" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Height="30" Width="150" Content="Analyse" Margin="20" Click="btnAnalyse_Click" Style="{DynamicResource dashboardButton}" />
             </Grid>
         </StackPanel>
     </Grid>

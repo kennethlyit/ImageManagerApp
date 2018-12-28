@@ -10,7 +10,19 @@
       Title="Logs">
 
     <Grid>
-        <ListView Name="lstLogs" Grid.Row="0">
+        <Grid.Resources>
+            <Style TargetType="ListViewItem">
+                <Style.Triggers>
+                    <Trigger Property="ItemsControl.AlternationIndex"  Value="0">
+                        <Setter Property="Background" Value="White" />
+                    </Trigger>
+                    <Trigger Property="ItemsControl.AlternationIndex"  Value="1">
+                        <Setter Property="Background" Value="#F0F0F0" />
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+        </Grid.Resources>
+        <ListView Name="lstLogs" Grid.Row="0" AlternationCount="2">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Date/Time" Width="150">

@@ -1,5 +1,6 @@
 ﻿using System;
 using DBLibrary;
+using System.Globalization;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -56,6 +57,10 @@ namespace ImageManagerUI
             int graphicCount = 0;
             int adminCount = 0;
             int opCount = 0;
+            //Variables for Images
+            float gettyCount = 0;
+            float iStockCount = 0;
+            float shutterCount = 0;
             //Total Record count
             int recordcount = 0;
             //eventual output
@@ -67,9 +72,24 @@ namespace ImageManagerUI
                 foreach (var item in imagelist)
                 {
                     recordcount++;
-                    output = output + Environment.NewLine + $"Record {recordcount} is for image {item.ImageName} which is used in {item.UseCase} " + Environment.NewLine;
+                    if (item.VendorID == 1)
+                    {
+                        gettyCount++;
+                    }
+                    if (item.VendorID == 2)
+                    {
+                        iStockCount++;
+                    }
+                    if (item.VendorID == 3)
+                    {
+                        shutterCount++;
+                    }
+                     
                 }
-                output = output + Environment.NewLine + $"Total number of records is {recordcount}" + Environment.NewLine;
+                output = output + Environment.NewLine + $"There are {gettyCount} images purchased from Getty" + Environment.NewLine + $"" +
+                    $"There are {iStockCount} images purchased from IStock Photos " + Environment.NewLine + $"" +
+                    $"There are {shutterCount} images purchased from ShutterStock" + Environment.NewLine;
+                output = output + Environment.NewLine + $"Total number of images is {recordcount}" + Environment.NewLine;
                 tbkResultsOutput.Text = output;
             }
 
@@ -79,9 +99,8 @@ namespace ImageManagerUI
                 foreach (var item in imagelist)
                 {
                     recordcount++;
-                    output = output + Environment.NewLine + $"Record {recordcount} is for image {item.ImageName} which is used in {item.UseCase} " + Environment.NewLine;
+                    output = output + Environment.NewLine + $"Record {recordcount} is for image {item.ImageName} which is used in {item.UseCase.UseCaseDescription} " + Environment.NewLine;
                 }
-                output = output + Environment.NewLine + $"Total number of records is {recordcount}" + Environment.NewLine;
                 tbkResultsOutput.Text = output;
             }
             //Images Stats 3 of 9
@@ -89,9 +108,28 @@ namespace ImageManagerUI
             {
                 foreach (var item in imagelist)
                 {
-
-
+                    recordcount++;
+                    if (item.VendorID == 1)
+                    {
+                        gettyCount++;
+                    }
+                    if (item.VendorID == 2)
+                    {
+                        iStockCount++;
+                    }
+                    if (item.VendorID == 3)
+                    {
+                        shutterCount++;
+                    }
                 }
+                gettyCount = (gettyCount / recordcount) * 100;
+                iStockCount = (iStockCount / recordcount) * 100;
+                shutterCount = (shutterCount / recordcount) * 100;
+                output = $"Percentage of total images bought from services" + Environment.NewLine + $"" +
+                    $"Getty Images is {gettyCount}% of the total" + Environment.NewLine +
+                    $"iStockPhoto is {iStockCount}% of the total" + Environment.NewLine +
+                    $"Shutter Stock is {shutterCount}% of the total" + Environment.NewLine;
+                tbkResultsOutput.Text = output;
             }
 
             //Users Summary 4 of 9 options
@@ -147,7 +185,52 @@ namespace ImageManagerUI
                 tbkResultsOutput.Text = output;
 
             }
+            //Users stats, 6 of 9
+            if (reportsType == ReportsType.Statistics && databaseType == DatabaseType.Users)
+            {
 
+            }
+            //Logs Summary, 7 of 9
+            if (reportsType == ReportsType.Summary && databaseType == DatabaseType.Logs)
+            {
+                //TODO:
+                //foreach (var item in logs)
+                //{
+                //    var month = TimeSpan.FromDays(30);
+                //    var monthcount = 0;
+                //    var week = TimeSpan.FromDays(7);
+                //    var weekcount = 0;
+                //    recordcount++;
+                //    if (item.Date.GetDateTimeFormats < TimeSpan.FromDays(30)) 
+                //    {
+
+                //    }
+                //    if (item.VendorID == 2)
+                //    {
+                //        iStockCount++;
+                //    }
+                //    if (item.VendorID == 3)
+                //    {
+                //        shutterCount++;
+                //    }
+
+                //}
+                output = output + Environment.NewLine + $"There are {gettyCount} images purchased from Getty" + Environment.NewLine + $"" +
+                    $"There are {iStockCount} images purchased from IStock Photos " + Environment.NewLine + $"" +
+                    $"There are {shutterCount} images purchased from ShutterStock" + Environment.NewLine;
+                output = output + Environment.NewLine + $"Total number of images is {recordcount}" + Environment.NewLine;
+                tbkResultsOutput.Text = output;
+            }
+            //Logs Summary, 8 of 9
+            if (reportsType == ReportsType.Count && databaseType == DatabaseType.Logs)
+            {
+
+            }
+            //Logs Summary, 9 of 9
+            if (reportsType == ReportsType.Statistics && databaseType == DatabaseType.Logs)
+            {
+
+            }
 
         }
 
