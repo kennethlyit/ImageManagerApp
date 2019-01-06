@@ -120,7 +120,7 @@ namespace ImageManagerUI
             }
             catch
             {
-                MessageBox.Show("Issue with User Tables", "User Tables", MessageBoxButton.OK);
+                //MessageBox.Show("Issue with User Tables", "User Tables", MessageBoxButton.OK);
                 
             }
 
@@ -144,22 +144,31 @@ namespace ImageManagerUI
 
         private void mnudDeleteUser_Click(object sender, RoutedEventArgs e)
         {
-            db.Users.RemoveRange(db.Users.Where(t => t.UserID == selectedUser.UserID));
-            int saveSucess = db.SaveChanges();
-            if (saveSucess == 1)
+
+            try
             {
-                CreateLogEntry(validateduser.UserID, (selectedUser.Username + "deleted by"), validateduser.Username);
-                RefreshUserList();
-                ClearUserDetails();
-                MessageBox.Show("User Deleted", "Save to Database");
+                var userrange = db.Users.Where(t => t.UserID == selectedUser.UserID);
+                db.Users.RemoveRange(db.Users.Where(t => t.UserID == selectedUser.UserID));
+                db.Logs.RemoveRange(db.Logs.Where(x => x.UserID == selectedUser.UserID));
+                int saveSucess = db.SaveChanges();
+                if (saveSucess >= 1)
+                {
+                    CreateLogEntry(validateduser.UserID, (selectedUser.Username + "deleted by"), validateduser.Username);
+                    RefreshUserList();
+                    ClearUserDetails();
+                    MessageBox.Show("User Deleted", "Save to Database");
+                }
+                else
+                {
+                    MessageBox.Show("Save Failed", "Save to Database");
+                }
+
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Save Failed", "Save to Database");
+                MessageBox.Show("Delete failed:", "An exception occurred while deleting the user: " + ex.Message);
             }
-
-
-
+   
         }
 
         private void muNewUser_Click(object sender, RoutedEventArgs e)
@@ -234,7 +243,7 @@ namespace ImageManagerUI
                     txtEmail.Text = selectedUser.Email;
                     txtPassword.Text = selectedUser.Password;
                     txtUserName.Text = selectedUser.Username;
-                    cboAccessLevel.SelectedIndex = selectedUser.LevelID;
+                    cboAccessLevel.SelectedIndex = selectedUser.UserID;
                 }
             }
 
@@ -243,9 +252,17 @@ namespace ImageManagerUI
 
         private void cboAccessLevel_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var theComboBox = (ComboBox)sender;
-            ComboBoxItem item = (ComboBoxItem)theComboBox.SelectedItem;
-            string value = item.Content.ToString();
+            try
+            {
+                var theComboBox = (ComboBox)sender;
+                ComboBoxItem item = (ComboBoxItem)theComboBox.SelectedItem;
+                string value = item.Content.ToString();
+            }
+            catch
+            {
+
+            }
+            
           }
 
         private void CreateLogEntry(int userID, string description, string userName)
