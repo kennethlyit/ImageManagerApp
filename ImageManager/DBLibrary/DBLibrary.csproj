@@ -74,7 +74,9 @@
     <Compile Include="Log.cs">
       <DependentUpon>ImageManagerModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="LoginProcess.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RegistrationProcess.cs" />
     <Compile Include="UseCase.cs">
       <DependentUpon>ImageManagerModel.tt</DependentUpon>
     </Compile>

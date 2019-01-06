@@ -24,6 +24,9 @@ namespace ImageManagerUI
     {
         ImageManageEntities db = new ImageManageEntities("metadata=res://*/ImageManagerModel.csdl|res://*/ImageManagerModel.ssdl|res://*/ImageManagerModel.msl;provider=System.Data.SqlClient;provider connection string='data source=192.168.81.100;initial catalog=ImageManage;persist security info=True;user id=ImageManagement;password=Letmein101;MultipleActiveResultSets=True;App=EntityFramework'");
 
+        LoginProcess loginProcess = new LoginProcess();
+
+
         public MainWindow()
         {
             InitializeComponent();
@@ -39,7 +42,7 @@ namespace ImageManagerUI
             string currentUser = txtUserName.Text;
             string currentPassword = txtPassword.Password;
             //Puts both strings into bool credentials validated, false is a problem.
-            credentialsValidated = ValidateUserInput(currentUser, currentPassword);
+            credentialsValidated = loginProcess.ValidateUserInput(currentUser, currentPassword);
             //checks the bool value and returns error in the bool is false, caused by no meeting requirements
             if (credentialsValidated)
             {
@@ -94,29 +97,6 @@ namespace ImageManagerUI
             db.SaveChanges();
         }
 
-        private bool ValidateUserInput(string username, string password)
-        {
-            //submitting a value of true, then applying false if it fails input checks
-            bool validated = true;
-            if (username.Length == 0 || username.Length > 30)
-            {
-                validated = false;
-            }
-            //checks each character in the username, looking for numbers and returning false
-            foreach (char character in username)
-            {
-                if (character >= '0' && character <= '9')
-                {
-                    validated = false;
-                }
-            }
-            //checking if the password length is greater then 6 and less then 30
-            if (password.Length <= 6 || password.Length > 30)
-            {
-                validated = false;
-            }
-            return validated;
-        }
 
         private User GetUserRecord(string username, string password)
         {
